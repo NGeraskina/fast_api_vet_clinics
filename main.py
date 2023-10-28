@@ -55,7 +55,7 @@ def post_time() -> Timestamp:
 
 
 @app.get('/dog')
-def get_dog(kind: Literal['terrier', 'bulldog', 'dalmatian']) -> List[Dog]:
+def get_dog(kind: Literal['terrier', 'bulldog', 'dalmatian']) -> list[Dog]:
     list_of_selected = []
     for i in dogs_db:
         if dogs_db[i].kind == kind:
