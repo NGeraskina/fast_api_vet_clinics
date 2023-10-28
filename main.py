@@ -67,8 +67,6 @@ def get_dog(kind: Literal['terrier', 'bulldog', 'dalmatian']) -> List[Dog]:
 @app.post('/dog')
 def create_dog() -> Dog:
     pk = max(dogs_db.keys())
-    if pk in dogs_db:
-        raise HTTPException(status_code=400, detail="Dog with this pk already exists")
     dogs_db[pk] = Dog(name='NewDog', pk=pk, kind='terrier'),
     return dogs_db[pk]
 
