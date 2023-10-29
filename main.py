@@ -84,6 +84,6 @@ def get_dog_by_pk(pk: int) -> Dog:
 
 
 @app.patch('/dog/{pk}')
-def change_dog_by_pk(pk: int) -> Dog:
-    dogs_db[pk].kind = 'terrier'
-    return dogs_db[pk]
+def change_dog_by_pk(pk: int, dog:Dog) -> Dog:
+    dogs_db[dog.pk] = dog
+    return dogs_db[dog.pk]
