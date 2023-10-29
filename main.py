@@ -50,8 +50,8 @@ def root() -> str:
 # ваш код здесь
 
 @app.post('/post')
-def post_time() -> Timestamp:
-    post_db.append(Timestamp(id=post_db[-1].id+1, timestamp=post_db[-1].id+1))
+def get_post() -> Timestamp:
+    post_db.append(Timestamp(id=post_db[-1].id + 1, timestamp=post_db[-1].id + 1))
     return post_db[-1]
 
 
@@ -65,14 +65,13 @@ def get_dog(kind: Literal['terrier', 'bulldog', 'dalmatian']) -> List[Dog]:
 
 
 @app.post('/dog')
-def create_dog(dog:Dog) -> Dog:
+def create_dog(dog: Dog) -> Dog:
     # pk = max(dogs_db.keys())
     try:
-        dogs_db[dog.pk] = dog #Dog(name='NewDog', pk=pk, kind='terrier')
+        dogs_db[dog.pk] = dog  # Dog(name='NewDog', pk=pk, kind='terrier')
         return dogs_db[dog.pk]
     except:
         raise HTTPException(status_code=422)
-
 
 
 @app.get('/dog/{pk}')
@@ -84,6 +83,6 @@ def get_dog_by_pk(pk: int) -> Dog:
 
 
 @app.patch('/dog/{pk}')
-def change_dog_by_pk(pk: int, dog:Dog) -> Dog:
+def update_dog(pk: int, dog: Dog) -> Dog:
     dogs_db[dog.pk] = dog
     return dogs_db[dog.pk]
