@@ -84,5 +84,8 @@ def get_dog_by_pk(pk: int) -> Dog:
 
 @app.patch('/dog/{pk}')
 def update_dog(pk: int, dog: Dog) -> Dog:
-    dogs_db[pk] = dog
-    return dogs_db[pk]
+    if pk in list(dogs_db.keys()):
+        dogs_db[pk] = dog
+        return dogs_db[pk]
+    else:
+        raise HTTPException(status_code=422, detail='Dog not found')
