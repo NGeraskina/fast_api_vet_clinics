@@ -65,10 +65,13 @@ def get_dog(kind: Literal['terrier', 'bulldog', 'dalmatian']) -> List[Dog]:
 
 
 @app.post('/dog')
-def create_dog() -> Dog:
-    pk = max(dogs_db.keys())
-    dogs_db[pk] = Dog(name='NewDog', pk=pk, kind='terrier')
-    return dogs_db[pk]
+def create_dog(dog:Dog) -> Dog:
+    # pk = max(dogs_db.keys())
+    try:
+        dogs_db[dog.pk] = dog #Dog(name='NewDog', pk=pk, kind='terrier')
+        return dogs_db[dog.pk]
+    except:
+        raise HTTPException(status_code=422)
 
 
 
