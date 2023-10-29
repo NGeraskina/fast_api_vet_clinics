@@ -51,7 +51,7 @@ def root() -> str:
 
 @app.post('/post')
 def get_post() -> Timestamp:
-    post_db.append(Timestamp(id=post_db[-1].id + 1, timestamp=post_db[-1].id + 1))
+    post_db.append(Timestamp(id=post_db[-1].id + 1, timestamp=post_db[-1].timestamp + 1))
     return post_db[-1]
 
 
